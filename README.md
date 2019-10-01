@@ -1,9 +1,3 @@
-Assignment 3 - Stub
-
-For this assignment, and web development in general you will need to exercise your "google-fu", your skill in using a search engine to find answers to problems.
-
-You do not need to do much backend coding at all for Module 1. app.js should just contain hard coded response values.
-
 ## Installation of Node App
 
 ### 1. Install
