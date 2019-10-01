@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ICalendar Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CHANGE ME">
+    <meta name="keywords" content="CHANGE ME">
+    <meta name="author" content="CHANGE ME">
+    <!-- Load jquery, bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script type="text/javascript" src='./index.js'></script>
+    
+    <!-- Custom CSS End -->
+
+    
+</head>
+
+
+<body id="mainBody">
+    <div class="jumbotron jumbotron-fluid" style="overflow:hidden;padding:10px;background-color:dodgerblue";>
+        <h1 class="display-4">ICalendar Viewer</h1>
+    </div>
+    
+    
+
+    <div style="overflow:hidden;border:hidden;min-height:75px" class="form-group" id="StatusPanel">
+        <label form="Status">Status Panel:</label>
+        <textarea style="overflow-x:scroll;overflow-y:scroll" class="form-control" id="Status" disabled></textarea>
+        
+    </div>
+    
+    <button id="clear">CLEAR</button>
+
+    <div style="min-height: 250px;margin-bottom: 30px;border-style:hidden"; id="fileLogPanel">
+           
+            
+    </div>
+
+    <form  id= "uploadForm" enctype = "multipart/form-data" method = "post" action = "/upload" >
+		   <input type ="submit" value ="Upload" accept = ".ics">
+		  <input name = "uploadFile" type="file" id="myFile" accept = ".ics" >
+       
+      </form>
+
+
+<div style="overflow:hidden"; class="form-group"  value = select>
+    <select style="overflow:scroll"; class="custom-select custom-select-lg mb-3" id="sel">
+  <option selected>Select a Calendar to View</option>
+  
+</select>
+</div>
+
+
+<div style="overflow:hidden" class="btn-group" role="group">
+    <button id="btn" class="btn btn-primary">View Calendar Events</button>
+    <button id="addEvt" class="btn btn-primary">Add a new Event</button>
+    <button id="addCal" class="btn btn-primary">Create a new Calendar</button>
+</div>  
+
+<div style="overflow:hidden" id="misc"></div>
+<div style="min-height:500px" data-toggle:"collapse" id="calView">
+
+</div>
+
+<div style="overflow:hidden" class="btn-group" role="group">
+    <button class=\"btn btn-primary\" id="evtAddBtn" disabled>Submit Event Details</button>
+    <button class=\"btn btn-primary\" id="calAddBtn" disabled>Submit Calendar Details</button>
+</div> 
+
+<div id="misc2" style="overflow:hidden"></div>
+
+<div id="misc3" style="background-color:white"></div>
+
+<div style="overflow:hidden"; class="form-group"  value = select>
+    Select an Event to perform actions:
+    <select style="overflow:scroll"; class="custom-select custom-select-lg mb-3" id="eventSel">
+        <option selected>Select an Event to view alarms or optional Properties</option>
+  
+</select>
+</div>
+
+<div class="btn-group dropright" style="width:700px;height:300px;margin:30px;padding-bottom:30px;overflow:hidden";>
+    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        View Event actions
+    </a>
+
+  <div class="dropdown-menu" style="background-color:lightblue;overflow:hidden" aria-labelledby="dropdownMenu" id="dropDown">
+    <a class="dropdown-item" ><button id="almView" class="btn btn-secondary" style="border:hidden;width:100%%">View Alarms</button></a>
+    <a class="dropdown-item"><button id="optPropView" class="btn btn-secondary" style="border:hidden;width:100%%">View Optional Properties</button></a>
+  </div>
+
+</div>
+
+<div style="margin:50px;min-height:250px" id="eventAct">
+    
+</div> 
+
+
+<div style="min-height:1300px;overflow:hidden;border: 1px solid black;margin:20px;background-color:lightblue">
+<div style="overflow:hidden;border: 0.25px solid black"><p>DATABASE LOGIN</p>
+<textarea style="overflow:hidden;height:30px;width:450px" id="qStat" disabled></textarea>
+</div>
+<form>
+  <div class="form-group" style="overflow:hidden">
+    <label for="userName">User Name: </label>
+    <input type="text" class="form-control" id="userName1" aria-describedby="userNameHelp" placeholder="Enter User Name">
+  </div>
+  <div class="form-group" style="overflow:hidden">
+    <label for="userPassword">Password: </label>
+    <input type="password" class="form-control" id="userPassword1" placeholder="Password">
+  </div>
+  <div class="form-group" style="overflow:hidden">
+    <label for="DBName">Database Name: </label>
+    <input type="text" class="form-control" id="dbName1" aria-describedby="DBNameHelp" placeholder="Enter Database Name">
+  </div>
+  <button type="submit" class="btn btn-primary" id="login">LOGIN</button>
+</form>
+<div style="overflow:hidden" class="btn-group" role="group">
+    <button id="store_files" class="btn btn-success-sm" disabled>Store All Files</button>
+    <button id="clear_tables" class="btn btn-success-sm" disabled>Clear All Data</button>
+    <button id="disp_dbstatus" class="btn btn-success-sm" disabled>Display DB Status</button>
+</div> 
+
+<div class="form-group" style="overflow:hidden">
+    <label for="formForQ"></label>
+    <input type="text" class="form-control" id="formForQ" placeholder="Input for Queries">
+  </div>
+
+<div class="btn-group dropright" style="width:700px;height:300px;padding:30px;overflow:hidden"; >
+    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        View Queries
+    </a>
+  <div class="dropdown-menu" style="background-color:lightblue;overflow:scroll" aria-labelledby="dropdownMenu" id="dropDown">
+    <a class="dropdown-item" ><button id="sortedEvts" class="btn btn-secondary-sm" style="border:hidden;width:100%%" disabled>View Events Sorted</button></a>
+    <a class="dropdown-item"><button id="fileEvts" class="btn btn-secondary-sm" style="border:hidden;width:100%%" disabled>View Events from a File</button></a>
+    <a class="dropdown-item"><button id="conflEvts" class="btn btn-secondary-sm" style="border:hidden;width:100%%" disabled>View Conflicting Events</button></a>
+    <a class="dropdown-item"><button id="cq1" class="btn btn-secondary-sm" style="border:hidden;width:100%%" disabled>List Database Files</button></a>
+    <a class="dropdown-item"><button id="cq2" class="btn btn-secondary-sm" style="border:hidden;width:100%%" disabled>Alarms from a File</button></a>
+    <a class="dropdown-item"><button id="cq3" class="btn btn-secondary-sm" style="border:hidden;width:100%%" disabled>Sorted Alarms</button></a>
+  </div>
+
+</div>
+
+
+
+  <div style="overflow:hidden;min-height:800px;width:97%%;background-color:lightblue" id="querres">
+  <label form="Queries">Query Results:</label>
+  <div style="min-height:450px;width:90%%;overflow-x:scroll;overflow-y:scroll;background-color:lightgray" class="form-control" id="Query" ></div>
+  <button style="margin:10px" id="clearQuery">CLEAR QUERY RESULTS</button>
+  </div>
+</div>
+
+
+</body>
+
+<footer>
+</footer>
+
+</html>
+
+
+
+
+
+
+
