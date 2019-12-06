@@ -3,7 +3,7 @@
 ### 1. Install
 
 ```Bash
-# From the root of the directory
+# From the root of the directory. NOTE: node must be version 8.9.4
 npm install
 ```
 
