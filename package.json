@@ -1,7 +1,7 @@
 {
   "name": "a3",
   "version": "1.0.0",
-  "description": "CIS2750 W18 - A3",
+  "description": "CIS2750 W19 - A3",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js"
